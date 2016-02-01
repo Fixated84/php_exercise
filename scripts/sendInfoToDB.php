@@ -5,7 +5,7 @@ $firstnameErr = $lastnameErr = $emailErr = $error = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if (empty($_POST["firstname"])) {
-
+	$firstname = "";
 $firstnameErr = "First Name is Required";
 $error = true;
 
@@ -15,10 +15,12 @@ $firstname = test_input($_POST["firstname"]);
 if (!preg_match("/^[a-zA-Z]*$/",$firstname)) {
       $firstnameErr = "Only letters"; 
       $error = true;
+	 
 }
 }
 
 if (empty($_POST["lastname"])) {
+	$lastname = "";
 $lastnameErr = "last Name is Required";
 $error = true;
 } else {
@@ -31,6 +33,7 @@ if (!preg_match("/^[a-zA-Z]*$/",$lastname)) {
 }}
 
 if (empty($_POST["email"])) {
+	$email = "";
 $emailErr = "Email is Required";
 $error = true;
 } else {
@@ -42,6 +45,13 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
       $error = true;
 }
 }
+
+session_start();
+$_SESSION['wrongfirstname'] = $firstname;
+$_SESSION['wronglastname'] = $lastname;
+$_SESSION['wrongemail'] = $email;
+//$_SESSION['backfromadd'] = true;
+
 }
 echo $firstnameErr . "<br>" . $lastnameErr . "<br>" . $emailErr;
 
@@ -59,10 +69,14 @@ $updatedb = mysqli_query($con,$queryadd);
  mysqli_close($con);
 
  if ($updatedb) {
- echo "<br>New record created successfully <br> You have added the Username: " .$firstname . " and the Email: " .$email . " to the database." ;
+ echo "<br>New record created successfully <br> You have added the Username: " .$firstname . " and the Email: " .$email . " to the database.<a  class=\"btn btn-danger\" href=\"../index.php\">go back</a\">" ;
+ 
+$_SESSION['wrongfirstname'] = "";
+$_SESSION['wronglastname'] = "";
+$_SESSION['wrongemail'] ="";
 
  }else{
-   echo "info could not be added";
+   echo "info could not be added <a  class=\"btn btn-danger\" href=\"../index.php\">go back </a\">";
 
 
 } 
