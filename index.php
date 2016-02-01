@@ -22,18 +22,24 @@ if (!isset($_SESSION['username'])) {
 
 	<div class="page-header">
   <h1>PHP Exercise <small>index.php</small></h1>
+  <a href="scripts/logout.php" class="btn btn-danger" style="position: absolute; top:5px; right:5px;">Logout</a>
 </div>
 
  <div class="container">
  	    <div class="row">
         <div class="col-md-6 col-md-offset-3">
 <form action="scripts/sendInfoToDB.php" method="POST">
-	<label>Add Username and Email to database:</label>
+	<label>Add First Name, Last Name and Email to database:</label>
 	<div class="input-group input input-group-lg">
-		<span class="input-group-addon username" id="sizing-addon1">Username</span>
- <input class="form-control"  type="text"  name="username" placeholder="Username" </input>
+		<span class="input-group-addon username" id="sizing-addon1">First Name</span>
+ <input class="form-control"  type="text"  name="firstname" placeholder="first name" </input>
 </div>
  
+<br>
+	<div class="input-group input input-group-lg">
+		<span class="input-group-addon username" id="sizing-addon1">Last Name</span>
+ <input class="form-control"  type="text"  name="lastname" placeholder="last name" </input>
+</div>
 <br>
 <div  class="input-group input input-group-lg">
 	<span class="input-group-addon email" id="sizing-addon1">Email</span>
@@ -45,11 +51,11 @@ if (!isset($_SESSION['username'])) {
 </form>
  
 <form action="scripts/removeFromDB.php" method="POST">
-<label>Remove Username from database:</label>
+<label>Remove email from database:</label>
 <div  class="input-group input input-group-lg">
 
-	<span class="input-group-addon email" id="sizing-addon1">Username</span>
- <input class="form-control"  type="text"  name="username" placeholder="Username" </input> 
+	<span class="input-group-addon email" id="sizing-addon1">Email</span>
+ <input class="form-control"  type="text"  name="email" placeholder="email" </input> 
   
 </div><br>
   <input type="submit" value="Remove" name="submit" class="btn btn-danger"></input>

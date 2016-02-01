@@ -68,8 +68,11 @@ header('location:../index.php');
   
 </div><br>
   <input type="submit" value="Submit" name="submit" class="btn btn-success"></input>
+<br>
+<br>
+
  <?php
-echo $message;
+echo "<p><strong>  $message   </strong></p>";
  ?>
 
 </form>
