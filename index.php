@@ -2,6 +2,9 @@
 session_start();
 if (!isset($_SESSION['username'])) {
  header('location:scripts/login.php');
+
+
+
 }
 ?>
 
@@ -23,7 +26,7 @@ if (!isset($_SESSION['username'])) {
 	<div class="page-header">
   <h1>PHP Exercise <small>index.php</small></h1>
   <a href="scripts/logout.php" class="btn btn-danger" style="position: absolute; top:5px; right:5px;">Logout</a>
-</div>
+ 
 
  <div class="container">
  	    <div class="row">
@@ -32,18 +35,18 @@ if (!isset($_SESSION['username'])) {
 	<label>Add First Name, Last Name and Email to database:</label>
 	<div class="input-group input input-group-lg">
 		<span class="input-group-addon username" id="sizing-addon1">First Name</span>
- <input class="form-control"  type="text"  name="firstname" placeholder="first name" </input>
+ <input class="form-control"  type="text" value="<?php if (isset($_POST['firstname'])) echo htmlentities($_POST['firstname']); ?>"  name="firstname" placeholder="first name" required</input>
 </div>
  
 <br>
 	<div class="input-group input input-group-lg">
 		<span class="input-group-addon username" id="sizing-addon1">Last Name</span>
- <input class="form-control"  type="text"  name="lastname" placeholder="last name" </input>
+ <input class="form-control"  type="text" value="<?php if (isset($_POST['lastname'])) echo htmlentities($_POST['lastname']); ?>" name="lastname" placeholder="last name" required</input>
 </div>
 <br>
 <div  class="input-group input input-group-lg">
 	<span class="input-group-addon email" id="sizing-addon1">Email</span>
- <input class="form-control"  type="text"  name="email" placeholder="Email" </input> 
+ <input class="form-control"  type="text" value="<?php if (isset($_POST['email'])) echo htmlentities($_POST['email']); ?>" name="email" placeholder="Email" required</input> 
   
 </div><br>
   <input type="submit" value="Submit" name="submit" class="btn btn-success"></input>

@@ -1,11 +1,17 @@
 <?php
 $message = "<p></p>";
 
+$username = $password = "";
+
+
 if($_POST) {
 
-$username = $_POST['username'];
+
+
+$username = test_input($_POST['username']);
 $password = md5($_POST['password']);
 
+ 
 
 include("connect.php");
 
@@ -26,8 +32,14 @@ header('location:../index.php');
 
 }
 
-}
 
+}
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
 
 
 ?>
@@ -42,6 +54,7 @@ header('location:../index.php');
 <title>PHP Exercise</title>
 <link href="../css/bootstrap.css" rel="stylesheet">
 <link href="../css/style.css" rel="stylesheet">
+<link href="../css/animate.css" rel="stylesheet">
  
 </head>
 
@@ -54,7 +67,7 @@ header('location:../index.php');
  <div class="container">
  	    <div class="row">
         <div class="col-md-6 col-md-offset-3">
-<form   method="POST">
+<form  method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 	<label>Enter your login details:</label>
 	<div class="input-group input input-group-lg">
 		<span class="input-group-addon username" id="sizing-addon1">Username</span>
@@ -72,7 +85,7 @@ header('location:../index.php');
 <br>
 
  <?php
-echo "<p><strong>  $message   </strong></p>";
+echo "<p class=\"animated zoomIn\"><strong>  $message   </strong></p>";
  ?>
 
 </form>
